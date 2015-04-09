@@ -2,7 +2,7 @@
 layout: post
 title:  shell cookbook
 date:   2015-04-09 11:41:05
-category: "shell_cookbook"
+category: "linux 天使团"
 ---
 
 <h2>第一章Shell  之讨厌的正则</h2> 
