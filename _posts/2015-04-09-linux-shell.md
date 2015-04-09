@@ -4,7 +4,8 @@ title:  shell cookbook
 date:   2015-04-09 11:41:05
 category: "shell_cookbook"
 ---
-#####第一章Shell  之讨厌的正则 
+
+<h2>第一章Shell  之讨厌的正则</h2> 
 ###linux 天使团团长：隋成龙
 ###编辑整理：邢耀东
 *  思想（KISS）相当重要.
