@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  TYPO.CSS
+title:  PYTHON
 date:   2015-04-09 12:55:11
 category: "第一个python"
 ---
