@@ -90,8 +90,6 @@ customLinks:
   - item:
     - text: Font Awesome
       url: http://fortawesome.github.io/Font-Awesome/
-    - text: Google Font
-      url: http://www.google.com/fonts/
     - text: jQuery
       url: http://jquery.com/
     message: 其他相关链接
