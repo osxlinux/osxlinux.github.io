@@ -84,8 +84,8 @@ root:x:0:0:root:/root:/bin/bash
 * 总结`：`以上是如何定位一个字符。
 
 <p>简单的实例</p>
-<pre><code>
-[root@localhost ~]# cat testfile | grep --color '.'
+<pre>
+<code>[root@localhost ~]# cat testfile | grep --color '.'
 dog pig Dog
 pig pig .og
 dog d.g dog dog dog
