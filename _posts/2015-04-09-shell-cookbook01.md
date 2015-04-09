@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  shell_cookbook
+title:  shell_cookbook_讨厌的正则
 date:   2015-04-09 14:10:05
-category: "linux 天使团"
+category: "linux_天使团"
 ---
 <h2>第一节讨厌的正则</h2>
 
