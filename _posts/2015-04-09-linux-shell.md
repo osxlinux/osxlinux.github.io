@@ -6,11 +6,9 @@ category: "shell_cookbook"
 ---
 
 <h2>第一章Shell  之讨厌的正则</h2> 
-<h3>linux 天使团团长：隋成龙</h3>
-###编辑整理：邢耀东
-*  思想（KISS）相当重要.
-*	我们遵循KISS原则  （keep it simple，stupid） 
-*   这事其实不难，只要按照以下思路进行就行了。 
+<h3 id="tagline">linux 天使团团长：隋成龙</h3>
+<h3>编辑整理：邢耀东</h3>
+<p> 思想（KISS）相当重要.我们遵循KISS原则  （keep it simple，stupid）这事其实不难，只要按照以下思路进行就行了。</p> 
 
 >1.  把复杂的问题简单化，模块化 
 >2.  写出每一个模块的伪码。 
