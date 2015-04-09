@@ -2,7 +2,7 @@
 layout: post
 title:  shell cookbook
 date:   2015-04-09 11:41:05
-category: "linux 天使团"
+category: "linux_天使团"
 ---
 
 <h4 id="tagline">linux 天使团团长：隋成龙</h4>
