@@ -20,3 +20,10 @@ category: "第一个python"
         </ol>
     </li>
 </ol>
+
+```javascript
+  var ihubo = {
+    nickName  : "osxlinux",
+    site : "http://osxlinux.cnblogs.com"
+  }
+```
