@@ -2,7 +2,7 @@
 layout: post
 title:  shell cookbook
 date:   2015-04-09 11:41:05
-category: "shell cookbook"
+category: "shell_cookbook"
 ---
 #####第一章Shell  之讨厌的正则 
 ###linux 天使团团长：隋成龙
