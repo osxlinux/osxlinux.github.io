@@ -84,8 +84,6 @@ customLinks:
   - item:
     - text: osxlinux
       url: http://osxlinux.cnblogs.com
-    - text: Jekyll
-      url: http://jekyllrb.com
     - text: Jekyll Theme
       url: http://www.zhanxin.info/themes.html
     message: Friends
