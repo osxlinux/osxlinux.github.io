@@ -39,10 +39,10 @@ timezone:      null
 
 
 #Site config
-title: Jekyll Theme
+title: osxlinux blogs
 description: Just another Jekyll theme design and code by zhanxin.info.
-keywords: Jekyll Theme
-url: http://osxlinux.github.io
+keywords: osxlinux blogs
+url: https://osxlinux.github.io
 feed: /atom.xml
 favicon: http://jekyllrb.com/favicon.png
 
