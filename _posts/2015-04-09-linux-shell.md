@@ -6,7 +6,7 @@ category: "shell_cookbook"
 ---
 
 <h2>第一章Shell  之讨厌的正则</h2> 
-###linux 天使团团长：隋成龙
+<h3>linux 天使团团长：隋成龙</h3>
 ###编辑整理：邢耀东
 *  思想（KISS）相当重要.
 *	我们遵循KISS原则  （keep it simple，stupid） 
