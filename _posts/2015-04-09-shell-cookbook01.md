@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  shell_cookbook_讨厌的正则
+title:  shell_cookbook_02
 date:   2015-04-09 14:10:05
 category: "linux_天使团"
 ---
