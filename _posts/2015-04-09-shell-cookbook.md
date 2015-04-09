@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  shell cookbook
+title:  shell_cookbook
 date:   2015-04-09 11:41:05
 category: "linux_天使团"
 ---
