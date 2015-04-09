@@ -6,7 +6,7 @@ category: "linux_天使团"
 ---
 
 <h4 id="tagline">linux 天使团团长：隋成龙</h4>
-<h4>成员：邢耀东</h4>
+<h4>linux天使团成员：邢耀东</h4>
 <p> 思想（KISS）相当重要,我们遵循KISS原则(keep it simple\stupid),这事其实不难，只要按照以下思路进行就行了。</p>
  
 >1.  把复杂的问题简单化，模块化 
