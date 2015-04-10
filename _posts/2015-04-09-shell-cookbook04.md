@@ -424,7 +424,7 @@ Enter your number:[root@localhost shell]# echo $number
  </code></pre>
 <p>在numuber后面输入内容是不显示的。</p>
 <p>安全终端：stty 通过一个脚本来演示：</p>
-<pre><pre>#!/bin/bash
+<pre><code>#!/bin/bash
 echo "Enter you password:"
 stty -echo
 read password
