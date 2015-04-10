@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  
+title:  shell_cookbook_04
 date:   2015-04-09 12:55:11
-category: "第一个python"
+category: "linux_天使团"
 ---
 <h2>第三节简单明了的输入输出.</h2>
 
