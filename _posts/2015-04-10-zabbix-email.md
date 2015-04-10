@@ -107,7 +107,7 @@ echo "$3" | /bin/mail   -s "$2"  $1
 ![zabbix](otherimage/12.png)
 
 <h4>4）  测试一下：</h4>
-<p>把触发项的阈值调节一下<p>
+<p>把触发项的阈值调节一下</p>
 ![zabbix](otherimage/14.png)
 <p>邮件效果：</p>
 ![zabbix](otherimage/15.png)
