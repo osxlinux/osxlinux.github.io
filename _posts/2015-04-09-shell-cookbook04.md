@@ -278,7 +278,8 @@ Format参数在必要的情况下会经常重新使用以满足 Argument参数�
  </code></pre>
 <p>三次使用 Format参数打印所有给定字符串。0（零）由 printf命令提供以满足最后的 %4d 转换规格。</p>
 
-2. 输入下列命令 <code>`printf "%c %c/n" 78 79</code>
+2. 输入下列命令 :
+<pre><code>printf "%c %c/n" 78 79</code></pre>
  
 产生下列输出： 
 <pre><code>7 7</code></pre>
