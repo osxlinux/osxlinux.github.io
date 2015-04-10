@@ -287,3 +287,83 @@ Format参数在必要的情况下会经常重新使用以满足 Argument参数�
  文件 
 <code>/usr/bin/printf </code>
 包含 printf命令
+
+printf 命令用来定制输出。
+<p>举例：</p>
+<pre><code>
+[root@localhost shell]# printf "%10d%10d\n" 1 1 3 4 2        
+         1         1
+         3         4
+         2         0
+[root@localhost shell]# printf "%5s%5s\n" 1 21 321 4321 54321 sss
+    1   21
+  321 4321
+54321  sss
+[root@localhost shell]# 
+     
+[root@localhost shell]# printf "%5d%5d\n" 1 21 321 4321 54321
+    1   21
+  321 4321
+54321    0
+[root@localhost shell]# 
+</cod></pre>
+
+<p>观察以上输出的结果。提示输出的时候看显示的位数和定制位数的关系。</p>
+
+
+<p>tee 命令：读取标准输入的数据，并将内容打印出来，生成文件。</p>
+
+<code>tee file</code>
+<p>如果文件不存在则创建，存在则覆盖。</p>
+<pre><code>
+[root@localhost shell]# cat ip | tee ip.bak
+172.16.8.8 
+172.16.9.9 
+[root@localhost shell]#
+</code></pre>
+<code>tee -a</code>
+<p>输出到标准输出的同时，追加到文件file中。如果文件不存在，则创建；如果已经存在，就在
+末尾追加内容，而不是覆盖。</p>
+<pre><code>
+[root@localhost shell]# cat ip.bak
+172.16.8.8 
+172.16.9.9 
+172.16.8.8 
+172.16.9.9 
+[root@localhost shell]# cat ip | tee -a ip.bak
+172.16.8.8 
+172.16.9.9 
+[root@localhost shell]# cat ip.bak 
+172.16.8.8 
+172.16.9.9 
+172.16.8.8 
+172.16.9.9 
+172.16.8.8 
+172.16.9.9 
+[root@localhost shell]#
+</code></pre>
+<code>tee -</code>
+<p>重复输出字符串。后面跟多少个- 代表在本身输出的基础上加一次。看下面两个例子。</p>
+<pre><code>
+[root@localhost ~]# echo Hello | tee -
+Hello
+Hello
+[root@localhost ~]# echo Hello | tee - -
+Hello
+Hello
+Hello
+[root@localhost ~]# echo Hello | tee - - -
+Hello
+Hello
+Hello
+Hello
+[root@localhost ~]#
+</code></pre>
+----------------------------------------
+<pre><code>
+[root@localhost ~]# echo -n Hello | tee -
+HelloHello[root@localhost ~]# echo -n Hello | tee - -
+HelloHelloHello[root@localhost ~]# echo -n Hello | tee - - -
+HelloHelloHelloHello[root@localhost ~]# 
+</code></pre>
+
