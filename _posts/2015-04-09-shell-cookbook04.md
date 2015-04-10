@@ -543,7 +543,7 @@ I kown !
 
 <p>以上的EOF是可以自定义的。</p>
 举例：
-<pre><code>
+<code>
 [root@localhost shell]# cat &lt;&lt;MZNH&gt;file2
  Hello ! meizi!
  Hi boy !
@@ -558,5 +558,5 @@ can I help you ?
 yes!
 let't go my home.....
 [root@localhost shell]#
-</code></pre>
+</code>
 <p>从<<开始直到遇到MZNH结束交互。</p>
