@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  zabbix_email_01
-date:   2015-04-09 12:55:11
+date:   2015-04-10 12:55:11
 category: "monitor"
 ---
 <p>操作系统环境：</p>
