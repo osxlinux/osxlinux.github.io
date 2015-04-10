@@ -35,7 +35,7 @@ Fd重点！！！
 *	--help 显示帮助--version 显示版本信息
 
 举例
-<code>echo -e "\033[32;49;1m [DONE] \033[39;49;0m"或echo -e "\e[32;49;1m [DONE] \033[39;49;0m"</code>
+<code>echo -e "\033[32;49;1m [DONE] \033[39;49;0m"</code><code>或</code>echo -e "\e[32;49;1m [DONE] \033[39;49;0m"</code>
 
 输出结果 ：`[DONE]`
 
