@@ -561,3 +561,314 @@ let't go my home.....
 [root@localhost shell]#
 </code></pre>
 <p>从<<开始直到遇到MZNH结束交互。</p>
+
+
+
+
+<p> | 管道：将第一条命令的输出，作为第二条命令的输入</p>
+<code>command1 | command2</code>
+<p>经常配合xargs使用：</p>
+<pre><code>
+[root@localhost shell]# echo a b c | xargs -n 1
+a
+b
+c
+[root@localhost shell]# echo a b c | xargs -n 3
+a b c
+[root@localhost shell]# echo a b c | xargs -n 2
+a b
+c
+[root@localhost shell]# 
+</code></pre>
+
+
+<p>tac 命令：反过来查看一个文件。其他用法自己研究一下。</p>
+<pre><code>
+[root@localhost shell]# cat file2 
+Hello ! meizi!
+Hi boy !
+can I help you ?
+yes!
+let't go my home.....
+[root@localhost shell]# tac file2 
+let't go my home.....
+yes!
+can I help you ?
+Hi boy !
+Hello ! meizi!
+[root@localhost shell]# 
+</code></pre>
+
+<p>（）合并输出：</p>
+<pre><code>
+[root@localhost shell]# cat file1 ; cat file2 >> file3
+look ! very beautiful !
+yes !
+I kown !
+[root@localhost shell]# cat file3 
+Hello ! meizi!
+Hi boy !
+can I help you ?
+yes!
+let't go my home.....
+[root@localhost shell]# (cat file1 ; cat file2)>file4
+[root@localhost shell]# cat file4 
+look ! very beautiful !
+yes !
+I kown !
+Hello ! meizi!
+Hi boy !
+can I help you ?
+yes!
+let't go my home.....
+[root@localhost shell]# 
+</code></pre>
+
+<p>文件描述符：</p>
+ <p>>前面的2代表的是错误的输出。>前面1代表的是错误的输出。</p>
+<pre><code>
+[ITnihao@localhost ~]$ find / -name passwd 2&gt;/tmp/err
+/selinux/class/passwd
+/selinux/class/passwd/perms/passwd
+/usr/bin/passwd
+/etc/pam.d/passwd
+/etc/passwd
+[ITnihao@localhost ~]$ find / -name passwd 1&gt;/tmp/rig
+find: “/root”: 权限不够
+find: “/lost+found”: 权限不够
+find: “/home/think”: 权限不够
+find: “/home/zabbix”: 权限不够
+find: “/usr/lib64/audit”: 权限不够
+find: “/etc/selinux/targeted/modules/active”: 权限不够
+find: “/etc/sudoers.d”: 权限不够
+find: “/etc/polkit-1/localauthority”: 权限不够
+find: “/etc/audisp”: 权限不够
+............
+</code></pre>
+
+
+
+思考：查看一个系统中没有的文件。echo $?的返回值是多少？
+<pre><code>[root@localhost ~]# ls /etc/chaojihuai
+ls: 无法访问/etc/chaojihuai: 没有那个文件或目录
+[root@localhost ~]# echo $?
+[root@localhost ~]# ls /etc/chaojihuai
+ls: /etc/chaojihuai: 没有那个文件或目录
+[root@localhost ~]# ls /etc/chaojihuai 2>&1 | grep --color "没有"
+ls: /etc/chaojihuai: 没有那个文件或目录
+[root@localhost ~]# 
+</code></pre>
+<p>总结以上可以看出：错误的信息是不经过管道的。
+备注：由于代码没有找到高亮方法，这里grep --color 输出的结果中的“没有”
+应该是红色的。</p>
+
+--------------------------------------------------------------
+<p>在linux中每启动一个程序或者脚本，都会在系统/proc/下产生一个与PID该名字相对应的目录，这个目录下有个目录叫fd存放与之相关的文件描述符。</p>
+<pre><code>
+#!/bin/bash
+echo "the shell pid $$"
+ls -l /proc/$$/fd/
+echo "sleep 3s"
+sleep 3
+echo "link 4 -> /tmp/fdtestwrite"
+exec 4> /tmp/fdtest
+echo "list current fd"
+ls -l /proc/$$/fd/
+sleep 3
+cat /etc/passwd >&4
+sleep 3
+echo "close /tmp/fdtest"
+exec 4>&-
+echo "list current fd"
+ls -l /proc/$$/fd/
+echo "sleep 3s"
+sleep 3
+echo "link 5 -> /tmp/fdtestread"
+exec 5< /tmp/fdtest
+echo "list current fd"
+ls -l /proc/$$/fd/
+sleep 3
+echo "read file from fd5, exec grep command"
+grep 'root' <&5
+sleep 3
+echo "close /tmp/fdtest"
+exec 5<&-
+echo "list current fd"
+ls -l /proc/$$/fd/
+sleep 3
+</code></pre>
+<pre>
+*	exec 文件描述符> 建立关系文件 ，以读的形式建立关系。
+*	exec 文件描述符>&- 取消建立关系。
+*	exec 文件描述符< 以写的形式建立关系。
+*	exec 文件描述符<&- 取消建立的关系。 
+</pre>
+--------------------------------------------
+fd的重要性。
+<p>看一下下面的小例子：</p>
+<pre><code>[root@localhost shell]# ps
+  PID TTY          TIME CMD
+20202 pts/3    00:00:00 bash
+20716 pts/3    00:00:00 ps
+[root@localhost shell]# ls -l /proc/20202/fd
+总计 0
+lrwx------ 1 root root 64 04-02 13:48 0 -> /dev/pts/3
+lrwx------ 1 root root 64 04-02 14:39 1 -> /dev/pts/3
+lrwx------ 1 root root 64 04-02 14:39 2 -> /dev/pts/3
+lrwx------ 1 root root 64 04-02 14:39 255 -> /dev/pts/3
+[root@localhost shell]# 
+</code></pre>
+pts指的是终端文件。
+<pre><code>
+[root@localhost shell]# echo hello > /dev/pts/3
+hello
+[root@localhost shell]# 
+</code></pre>
+<h5>和直接 echo hello的效果是一样的。</h5>
+<p>玩一下两个终端的通信。开启两个终端，查看终端号。</p>
+
+<p>第一个终端：</p>
+<pre><code>[root@localhost ~]# ps
+  PID TTY          TIME CMD
+20732 pts/5    00:00:00 bash
+20765 pts/5    00:00:00 ps
+[root@localhost ~]# 
+</code></pre>
+<p>第二个终端：</p>
+<pre><code>[root@localhost shell]# ps
+  PID TTY          TIME CMD
+20202 pts/3    00:00:00 bash
+20768 pts/3    00:00:00 ps
+[root@localhost shell]#
+</code></pre>
+<p>在一个终端输入：</p>
+<pre><code>[root@localhost ~]# echo hello > /dev/pts/3
+[root@localhost ~]# 
+</code></pre>
+<p>查看第二个终端：</p>
+<code>[root@localhost shell]# hello </code>
+<p>他会莫名奇妙打印出一个hello。</p>
+
+<p>介绍一个命令：
+lsof </p>
+
+<p>-d 查看一个文件描述符被那些进程打开了。</p>
+<pre><code>[root@localhost shell]# lsof -d 3 | grep "dev"  
+udevd       597      root    3u  unix 0xde4e1e40      0t0       1862 socket
+iscsid     2649      root    3u   CHR        1,3      0t0       1837 /dev/null
+rpc.idmap  3277      root    3u   CHR        1,3      0t0       1837 /dev/null
+automount  3464      root    3r   CHR      10,58      0t0      12175 /dev/autofs
+dbus-laun  3828      root    3u   CHR        1,3      0t0       1837 /dev/null
+gconfd-2   3836      root    3u   CHR        1,3      0t0       1837 /dev/null
+[root@localhost shell]# 
+</code></pre>
+<p>-i 端口被那个进程打开的。</p>
+<pre><code>
+[root@localhost shell]# lsof -i:22
+COMMAND   PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+sshd     3499 root    3u  IPv6  12326      0t0  TCP *:ssh (LISTEN)
+sshd     3499 root    4u  IPv4  12328      0t0  TCP *:ssh (LISTEN)
+[root@localhost shell]#
+</code></pre>
+<p>+d 查看这个目录下的文件被那些进程打开。</p>
+<pre><code>[root@localhost shell]# lsof +d /proc  
+COMMAND    PID USER   FD   TYPE DEVICE SIZE/OFF       NODE NAME
+vmtoolsd  2510 root   16r   REG    0,3        0 4026531842 /proc/meminfo
+vmtoolsd  2510 root   17r   REG    0,3        0 4026531853 /proc/stat
+vmtoolsd  2510 root   18r   REG    0,3        0 4026531857 /proc/vmstat
+klogd     3149 root    0r   REG    0,3        0 4026531848 /proc/kmsg
+Xorg      3751 root    6w   REG    0,3        0 4026532156 /proc/mtrr
+lsof     21064 root    3r   DIR    0,3        0          1 /proc
+[root@localhost shell]# 
+</code></pre>
+<p>+D 查看这个目录下的文件被那些进程打开，具体到子目录。</p>
+<pre><code>[root@localhost shell]# lsof +D /proc  
+COMMAND    PID      USER   FD   TYPE DEVICE SIZE/OFF       NODE NAME
+vmtoolsd  2510      root   16r   REG    0,3        0 4026531842 /proc/meminfo
+vmtoolsd  2510      root   17r   REG    0,3        0 4026531853 /proc/stat
+vmtoolsd  2510      root   18r   REG    0,3        0 4026531857 /proc/vmstat
+klogd     3149      root    0r   REG    0,3        0 4026531848 /proc/kmsg
+acpid     3381      root    3r   REG    0,3        0 4026532165 /proc/acpi/event
+hald      3394 haldaemon   11r   REG    0,3        0  222429201 /proc/3394/mounts
+Xorg      3751      root    5u   REG    0,3      256 4026532298 /proc/bus/pci/00/0f.0
+Xorg      3751      root    6w   REG    0,3        0 4026532156 /proc/mtrr
+lsof     21066      root    3r   DIR    0,3        0          1 /proc
+lsof     21066      root    6r   DIR    0,3        0 1380581385 /proc/21066/fd
+[root@localhost shell]#
+</code></pre>
+<p>-c command 查看这个命令打开了那些文件，这些文件调用的进程。</p>
+<pre><code>[root@localhost shell]# lsof -c ls
+COMMAND   PID USER   FD   TYPE DEVICE SIZE/OFF       NODE NAME
+lsof    21072 root  cwd    DIR  253,0     4096    4316938 /root/shell
+lsof    21072 root  rtd    DIR  253,0     4096          2 /
+lsof    21072 root  txt    REG  253,0   129820    9887131 /usr/sbin/lsof
+lsof    21072 root  mem    REG  253,0   245376    3271583 /lib/libsepol.so.1
+lsof    21072 root  mem    REG  253,0    93508    3271584 /lib/libselinux.so.1
+lsof    21072 root  mem    REG  253,0   130864    3271547 /lib/ld-2.5.so
+lsof    21072 root  mem    REG  253,0  1693820    3271566 /lib/libc-2.5.so
+lsof    21072 root  mem    REG  253,0    20668    3271567 /lib/libdl-2.5.so
+lsof    21072 root  mem    REG  253,0 56417488    9881339 /usr/lib/locale/locale-archive
+lsof    21072 root    0u   CHR  136,3      0t0          5 /dev/pts/3
+lsof    21072 root    1u   CHR  136,3      0t0          5 /dev/pts/3
+lsof    21072 root    2u   CHR  136,3      0t0          5 /dev/pts/3
+lsof    21072 root    3r   DIR    0,3        0          1 /proc
+lsof    21072 root    4r   DIR    0,3        0 1380974601 /proc/21072/fd
+lsof    21072 root    5w  FIFO    0,6      0t0     365144 pip
+</code></pre>
+ 
+-----------------------------------
+<p>lsod找回误删除的文件。</p>
+<p>恢复删除的文件</p>
+
+><p>当 UNIX 计算机受到入侵时，常见的情况是日志文件被删除，以掩盖攻击者的踪迹。管理错误也可能导致意外删除重要的文件，比如在清理旧日志时，意外地删除了数据库的活动事务日志。有时可以恢复这些文件，并且lsof可以为您提供帮助。</p>
+
+>当进程打开了某个文件时，只要该进程保持打开该文件，即使将其删除，它依然存在于磁盘中。这意味着，进程并不知道文件已经被删除，它仍然可以向打开该文件时提供给它的文件描述符进行读取和写入。除了该进程之外，这个文件是不可见的，因为已经删除了其相应的目录条目。
+
+><p>前面曾在转到 /proc 目录部分中说过，通过在适当的目录中进行查找，您可以访问进程的文件描述符。在随后的内容中，您看到了lsof可以显示进程的文件描述符和相关的文件名。您能明白我的意思吗？</p>
+
+></p>但愿它真的这么简单！当您向lsof传递文件名时，比如在`lsof /file/I/deleted`中，它首先使用stat()系统调用获得有关该文件的信息，不幸的是，这个文件已经被删除。在不同的操作系统中，lsof可能可以从核心内存中捕获该文件的名称。清单 5显示了一个 Linux 系统，其中意外地删除了 Apache 日志，我正使用grep工具查找是否有人打开了该文件。</p>
+
+<p>在 Linux 中使用 lsof 查找删除的文件</p>
+<pre><code>
+# lsof | grep error_log
+httpd      2452     root    2w      REG       33,2      499    3090660
+/var/log/httpd/error_log (deleted)
+httpd      2452     root    7w      REG       33,2      499    3090660
+/var/log/httpd/error_log (deleted)
+... more httpd processes ...
+</code></pre>
+
+<p>在这个示例中，您可以看到 PID 2452 打开文件的文件描述符为 2（标准错误）和 7。因此，可以在 /proc/2452/fd/7 中查看相应的信息，如下代码：</p>
+
+<p>通过 /proc 查找删除的文件</p>
+<pre><code>
+# cat /proc/2452/fd/7
+[Sun Apr 30 04:02:48 2006] [notice] Digest: generating secret for digest authentication
+[Sun Apr 30 04:02:48 2006] [notice] Digest: done
+[Sun Apr 30 04:02:48 2006] [notice] LDAP: Built with OpenLDAP LDAP SDK
+</code></pre>
+
+><p>Linux 的优点在于，它保存了文件的名称，甚至可以告诉我们它已经被删除。在遭到破坏的系统中查找相关内容时，这是非常有用的内容，因为攻击者通常会删除日志以隐藏他们的踪迹。Solaris 并不提供这些信息。然而，我们知道httpd守护进程使用了 error_log 文件，所以可以使用ps命令找到这个 PID，然后可以查看这个守护进程打开的所有文件。</p>
+
+<p>在 Solaris 中查找删除的文件</p>
+<pre><code>
+# lsof -a -p 8663 -d ^txt
+COMMAND  PID   USER   FD   TYPE        DEVICE SIZE/OFF    NODE NAME
+httpd   8663 nobody  cwd   VDIR         136,8     1024       2 /
+httpd   8663 nobody    0r  VCHR          13,2          6815752 /devices/pseudo/mm@0:null
+httpd   8663 nobody    1w  VCHR          13,2          6815752 /devices/pseudo/mm@0:null
+httpd   8663 nobody    2w  VREG         136,8      185  145465 / (/dev/dsk/c0t0d0s0)
+httpd   8663 nobody    4r  DOOR                    0t0      58 /var/run/name_service_door
+(door to nscd[81]) (FA:->0x30002b156c0)
+httpd   8663 nobody   15w  VREG         136,8      185  145465 / (/dev/dsk/c0t0d0s0)
+httpd   8663 nobody   16u  IPv4 0x300046d27c0      0t0     TCP *:80 (LISTEN)
+httpd   8663 nobody   17w  VREG         136,8        0  145466
+/var/apache/logs/access_log
+httpd   8663 nobody   18w  VREG         281,3        0 9518013 /var/run (swap)
+</code></pre>
+
+<p>我使用-a和-d参数对输出进行筛选，以排除代码程序段，因为我知道需要查找的是哪些文件。Name列显示出，其中的两个文件（FD 2 和 15）使用磁盘名代替了文件名，并且它们的类型为VREG（常规文件）。在 Solaris 中，删除的文件将显示文件所在的磁盘的名称。通过这个线索，就可以知道该 FD 指向一个删除的文件。实际上，查看/proc/8663/fd/15就可以得到所要查找的数据。</p>
+
+<p>如果可以通过文件描述符查看相应的数据，那么您就可以使用 I/O 重定向将其复制到文件中，如cat /proc/8663/fd/15 > /tmp/error_log。此时，您可以中止该守护进程（这将删除 FD，从而删除相应的文件），将这个临时文件复制到所需的位置，然后重新启动该守护进程。</p>
+
+<p>对于许多应用程序，尤其是日志文件和数据库，这种恢复删除文件的方法非常有用。正如您所看到的，有些操作系统（以及不同版本的lsof）比其他的系统更容易查找相应的数据。</p>
