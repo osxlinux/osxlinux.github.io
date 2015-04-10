@@ -92,8 +92,8 @@ echo "$3" | /bin/mail   -s "$2"  $1
 <h4>1）  示警媒介配置：</h4>
 ![zabbix](otherimage/3.png)
 ![zabbix](otherimage/4.png)
-</p>注意其中的类型以及脚本名称</p>
-</p>类型选择脚本，名称选择你在alertscripts目录下建立的脚本文件名称。</p>
+<p>注意其中的类型以及脚本名称</p>
+<p>类型选择脚本，名称选择你在alertscripts目录下建立的脚本文件名称。</p>
 <h4>2）  用户配置</h4>
 ![zabbix](otherimage/5.png)
 ![zabbix](otherimage/6.png)
