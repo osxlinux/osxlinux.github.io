@@ -133,7 +133,7 @@ RedHat的字体和背景颜色的改变方法：
 <p>前景色：30黑 31红 32绿 33黄 34蓝 35紫 36青 37白</p>
 <p>背景色：40黑 41红 42绿 43黄 44青 45蓝 46青 47白</p>
 前景颜色各数字是对应背景颜色减去10.
-<p>命令：</p>   <code>echo   -e   "\033[background_number;foreground_numberm" </code>
+<p>命令：</p>  <pre> <code>echo   -e   "\033[background_number;foreground_numberm" </code></pre>
 <p>如设置白色背景黑色前景字体应该是</p>   <code>echo   -e   "\033[47;30m"</code>
 
 <p>foreground_number=前景色</p>
