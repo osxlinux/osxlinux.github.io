@@ -319,4 +319,47 @@ Format参数在必要的情况下会经常重新使用以满足 Argument参数�
 172.16.9.9 
 [root@localhost shell]#
 </code></pre>
-
+<code>tee -a</code>
+<p>输出到标准输出的同时，追加到文件file中。如果文件不存在，则创建；如果已经存在，就在
+末尾追加内容，而不是覆盖。</p>
+<pre><code>
+[root@localhost shell]# cat ip.bak
+172.16.8.8 
+172.16.9.9 
+172.16.8.8 
+172.16.9.9 
+[root@localhost shell]# cat ip | tee -a ip.bak
+172.16.8.8 
+172.16.9.9 
+[root@localhost shell]# cat ip.bak 
+172.16.8.8 
+172.16.9.9 
+172.16.8.8 
+172.16.9.9 
+172.16.8.8 
+172.16.9.9 
+[root@localhost shell]#
+</code></pre>
+<code>tee -</code>
+<p>重复输出字符串。后面跟多少个- 代表在本身输出的基础上加一次。看下面两个例子。</p>
+<pre><code>
+[root@localhost ~]# echo Hello | tee -
+Hello
+Hello
+[root@localhost ~]# echo Hello | tee - -
+Hello
+Hello
+Hello
+[root@localhost ~]# echo Hello | tee - - -
+Hello
+Hello
+Hello
+Hello
+[root@localhost ~]#
+</code></pre>
+<pre><code>
+[root@localhost ~]# echo -n Hello | tee -
+HelloHello[root@localhost ~]# echo -n Hello | tee - -
+HelloHelloHello[root@localhost ~]# echo -n Hello | tee - - -
+HelloHelloHelloHello[root@localhost ~]# 
+</code></pre>
