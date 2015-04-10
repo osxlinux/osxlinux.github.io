@@ -431,3 +431,130 @@ read password
 echo your password is "$password"
 stty echo
 </code></pre>
+
+<p>执行过程：</p>
+<pre><code>
+[root@localhost shell]# sh sh7.sh 
+Enter you password:
+your password is testtest
+</code></pre>
+<p>文件的非交互式读取：</p>
+<p>举例1：</p>
+<pre><code>
+#!/bin/bash
+while read ip;do
+        ping -c 1 $ip
+wait
+done</root/shell/ip
+</code></pre>
+<p>注：wait是父进程等待子进程运行完成之后再启新的进程。</p>
+
+<p>执行结果:</p>
+<pre><code>
+[root@localhost shell]# sh sh8.sh 
+PING 127.0.0.1 (127.0.0.1) 56(84) bytes of data.
+64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.017 ms
+
+--- 127.0.0.1 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 0.017/0.017/0.017/0.000 ms
+PING 172.16.56.1 (172.16.56.1) 56(84) bytes of data.
+64 bytes from 172.16.56.1: icmp_seq=1 ttl=255 time=1.21 ms
+
+--- 172.16.56.1 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 1.218/1.218/1.218/0.000 ms
+[root@localhost shell]# 
+</code></pre>
+<p>举例2：用来操作两个变量</p>
+<pre><code>
+#!/bin/bash
+while read ip1 ip2
+do
+        echo "one:$ip1 two:$ip2"
+done</root/shell/ip
+</code></pre>
+<p>执行结果：</p>
+<pre><code>
+[root@localhost shell]# cat ip
+127.0.0.1 8.8.8.8
+172.16.56.1 202.106.0.20
+[root@localhost shell]# sh sh9.sh 
+one:127.0.0.1 two:8.8.8.8
+one:172.16.56.1 two:202.106.0.20
+[root@localhost shell]#
+</code></pre>
+<p>总结一下read：</p>
+<pre>
+1.需要人参与的输入
+2.不需要人参与的输入
+</pre>			
+
+<p>输入输出重定向：</p>
+<p>清空你将要导入对象的内容并写入 >前面命令的执行结果。</p>
+<p>举例：</p>
+<pre><code>
+[root@localhost shell]# cat ip
+172.16.6.6 
+[root@localhost shell]# printf "172.16.8.8 \n" > ip  
+[root@localhost shell]# cat ip
+172.16.8.8 
+[root@localhost shell]#
+</code></pre>
+<p>\>> 追加到你将要导入的对象的结尾，不改变对象本身的内容，把>>前面命令执行的结果写入。</p>
+举例：
+<pre><code>
+[root@localhost shell]# cat ip
+172.16.8.8 
+[root@localhost shell]# printf "172.16.9.9 \n" >> ip  
+[root@localhost shell]# cat ip
+172.16.8.8 
+172.16.9.9 
+[root@localhost shell]#
+</code></pre>
+<p>< 读取文件内容，更多的时候为避免人为的书写。</p>
+举例：
+<pre><code>
+[root@localhost ~]# cat < shell/ip 
+172.16.8.8 
+172.16.9.9 
+[root@localhost ~]# 
+</code></pre>
+<p><< 读取内容到指定的字符出现。</p>
+举例：
+<pre><code>
+[root@localhost shell]# cat ip <<EOF >ip.bak
+> EOF
+[root@localhost shell]# cat ip.bak 
+172.16.8.8 
+172.16.9.9 
+[root@localhost shell]# cat <<EOF >file1
+> look ! very beautiful !
+> yes !
+> I kown !
+> EOF
+[root@localhost shell]# cat file1 
+look ! very beautiful !
+yes !
+I kown !
+[root@localhost shell]#
+</code></pre>
+<p>以上的EOF是可以自定义的。</p>
+举例：
+<pre><code>
+[root@localhost shell]# cat <<MZNH >file2
+ Hello ! meizi!
+ Hi boy !
+ can I help you ?
+ yes!
+ let't go my home.....
+ MZNH
+[root@localhost shell]# cat file2 
+Hello ! meizi!
+Hi boy !
+can I help you ?
+yes!
+let't go my home.....
+[root@localhost shell]#
+</code></pre>
+<p>从<<开始直到遇到MZNH结束交互。</p>
