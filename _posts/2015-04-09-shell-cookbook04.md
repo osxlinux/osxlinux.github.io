@@ -514,23 +514,23 @@ one:172.16.56.1 two:202.106.0.20
 </code></pre>
 <p>< 读取文件内容，更多的时候为避免人为的书写。</p>
 举例：
-<pre><code>
+<code>
 [root@localhost ~]# cat < shell/ip 
 172.16.8.8 
 172.16.9.9 
 [root@localhost ~]# 
-</code></pre>
+</code>
 
 
 <p>&lt;&lt;读取内容到指定的字符出现。</p>
 <p>举例：</p>
 <code>
-[root@localhost shell]# cat ip <<EOF >ip.bak
+[root@localhost shell]# cat ip &lt;&lt;EOF &gt;ip.bak
 > EOF
 [root@localhost shell]# cat ip.bak 
 172.16.8.8 
 172.16.9.9 
-[root@localhost shell]# cat <<EOF >file1
+[root@localhost shell]# cat &lt;&lt;EOF  &gt;file1
 > look ! very beautiful !
 > yes !
 > I kown !
