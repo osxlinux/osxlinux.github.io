@@ -375,7 +375,7 @@ HelloHelloHelloHello[root@localhost ~]#
 <p>基本读入:</p>
 <p>接收标准输入（键盘）的输入，或其他文件描述符的输入,得到输入后，read命令将数据放入一个标准变量中。</p>
 <p>简单的示例脚本：</p>
-<pre><core>
+<pre><code>
 #!/bin/bash
 echo -n "Please input your name:"  //输入提示信息
 read name		//读取输入，并赋给一个标准变量。
