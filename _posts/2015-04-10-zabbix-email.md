@@ -22,7 +22,7 @@ Web服务器：LNMP
 [root@localhost ~]# /etc/init.d/sendmail stop
 [root@localhost ~]# chkconfig sendmail off
 [root@localhost ~]#
-</pre></code>
+</code></pre>
 
 <h4>2)安装mailx：</h4>
 <pre><code>
