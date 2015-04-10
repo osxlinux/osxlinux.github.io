@@ -524,7 +524,7 @@ one:172.16.56.1 two:202.106.0.20
 
 <p>&lt;&lt;读取内容到指定的字符出现。</p>
 <p>举例：</p>
-<code>
+<pre><code>
 [root@localhost shell]# cat ip &lt;&lt;EOF &gt;ip.bak
 > EOF
 [root@localhost shell]# cat ip.bak 
@@ -540,11 +540,11 @@ look ! very beautiful !
 yes !
 I kown !
 [root@localhost shell]#
-</code>
+</code></pre>
 
 <p>以上的EOF是可以自定义的。</p>
 举例：
-<code>
+<pre><code>
 [root@localhost shell]# cat &lt;&lt;MZNH&gt;file2
  Hello ! meizi!
  Hi boy !
@@ -559,5 +559,5 @@ can I help you ?
 yes!
 let't go my home.....
 [root@localhost shell]#
-</code>
+</code></pre>
 <p>从<<开始直到遇到MZNH结束交互。</p>
