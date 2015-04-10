@@ -288,7 +288,7 @@ Format参数在必要的情况下会经常重新使用以满足 Argument参数�
 <code>/usr/bin/printf </code>
 包含 printf命令
 
-printf 命令用来定制输出。
+<p>printf 命令用来定制输出。</p>
 <p>举例：</p>
 <pre><code>
 [root@localhost shell]# printf "%10d%10d\n" 1 1 3 4 2        
@@ -307,3 +307,15 @@ printf 命令用来定制输出。
 54321    0
 [root@localhost shell]# 
 </cod></pre>
+<p>观察以上输出的结果。提示输出的时候看显示的位数和定制位数的关系。</p>
+<p>tee 命令：读取标准输入的数据，并将内容打印出来，生成文件。</p>
+
+<code>tee file</code>
+<p>如果文件不存在则创建，存在则覆盖。</p>
+<pre><code>
+[root@localhost shell]# cat ip | tee ip.bak
+172.16.8.8 
+172.16.9.9 
+[root@localhost shell]#
+</code></pre>
+
