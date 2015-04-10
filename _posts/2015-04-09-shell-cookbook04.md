@@ -521,9 +521,9 @@ one:172.16.56.1 two:202.106.0.20
 [root@localhost ~]# 
 </code></pre>
 <p>&lt;&lt;读取内容到指定的字符出现。</p>
-<blockquote><blockquote>
+
 <p>举例：</p>
-<pre><code>
+
 [root@localhost shell]# cat ip <<EOF >ip.bak
 > EOF
 [root@localhost shell]# cat ip.bak 
@@ -539,8 +539,8 @@ look ! very beautiful !
 yes !
 I kown !
 [root@localhost shell]#
-</code></pre>
-</blockquote>
+
+
 <p>以上的EOF是可以自定义的。</p>
 举例：
 <pre><code>
