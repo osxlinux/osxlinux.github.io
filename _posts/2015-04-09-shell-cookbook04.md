@@ -542,7 +542,7 @@ I kown !
 <p>以上的EOF是可以自定义的。</p>
 举例：
 <pre><code>
-<code>[root@localhost shell]# cat <<MZNH >file2<code>
+<code>[root@localhost shell]# cat &lt;&lt;MZNH&gt;file2<code>
  Hello ! meizi!
  Hi boy !
  can I help you ?
