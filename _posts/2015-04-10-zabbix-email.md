@@ -2,7 +2,7 @@
 layout: post
 title:  zabbix_email_01
 date:   2015-04-09 12:55:11
-category: "监控"
+category: "monitor"
 ---
 <p>操作系统环境：</p>
 <pre>CentOS 5.5 x84_64位
