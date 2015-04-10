@@ -363,3 +363,71 @@ HelloHello[root@localhost ~]# echo -n Hello | tee - -
 HelloHelloHello[root@localhost ~]# echo -n Hello | tee - - -
 HelloHelloHelloHello[root@localhost ~]# 
 </code></pre>
+
+<p>read 命令：</p>
+<pre>
+1.基本读入
+2.计时读入
+3.默读（不显示在屏幕上）
+</pre>
+<p>这里只介绍基本读入，计时读入</p>
+
+<p>基本读入:</p>
+<p>接收标准输入（键盘）的输入，或其他文件描述符的输入,得到输入后，read命令将数据放入一个标准变量中。</p>
+<p>简单的示例脚本：</p>
+<pre><core>
+#!/bin/bash
+echo -n "Please input your name:"  //输入提示信息
+read name		//读取输入，并赋给一个标准变量。
+echo "Hello $name , welcome to my system" //打印出结果
+exit 0  //退出shell程序。
+</code></pre>
+<p>read 本身内置了提示功能，加 -p参数即可实现上面的内容。</p>
+<pre><code>
+#!/bin/bash
+read -p "Please input your name:" name  
+echo "Hello $name , welcome to my system" 
+echo Thank you "$name ! "
+exit 0
+</code></pre>
+<p>注意这里的read部分最后一个name前面的空格。可以认为 -p “”是一个部分 read name是一个部分</p>
+
+<p>计时读入：</p>
+<p>使用read命令存在着潜在危险。脚本很可能会停下来一直等待用户的输入。如果无论是否输入数据</p>
+<p>脚本都必须继续执行，那么可以使用-t选项指定一个 计时器。-t选项指定read命令等待输入的秒数。</p>
+<p>当计时满时，read命令返回一个非零退出状态;</p>
+ 
+<pre><code>#!/bin/bash
+ 
+if read -t 5 -p "please enter your name:" name
+ then 
+ 
+    echo "hello $name ,welcome to my script"
+ else
+ 
+    echo "sorry,too later！"
+ fi
+ exit 0
+ </code></pre>
+ <p>其他参数：</p>
+<p> -n参数限制字符输入，超过-n 指定的字符数，自动跳出。</p>
+<pre><code>
+[root@localhost shell]# read -n 5 -p "Enter you choice :" choice
+Enter you choice :hello[root@localhost shell]#
+ </code></pre>
+<p>-s 参数隐藏你的输入。</p>
+<pre><code>
+[root@localhost shell]# read -s -p "Enter your number:" number
+Enter your number:[root@localhost shell]# echo $number
+123456
+[root@localhost shell]# 
+ </code></pre>
+<p>在numuber后面输入内容是不显示的。</p>
+<p>安全终端：stty 通过一个脚本来演示：</p>
+<pre><pre>#!/bin/bash
+echo "Enter you password:"
+stty -echo
+read password
+echo your password is "$password"
+stty echo
+</code></pre>
