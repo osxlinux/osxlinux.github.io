@@ -6,4 +6,4 @@
     site : "http://osxlinux.cnblogs.com"
   }
 ```
-![zabbix](otherimages/1.jpg)
+![zabbix](otherimage/1.jpg)
