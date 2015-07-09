@@ -2,7 +2,7 @@
 layout: post
 title:  gitlab-learn
 date:   2015-07-07 12:55:11
-category: "project management"
+category: "project-management"
 ---
 <pre>Distribution      : CentOS 6.5
 GitLab version    : 6.0 - 6.3
