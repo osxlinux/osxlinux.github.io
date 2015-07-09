@@ -9,7 +9,7 @@ GitLab version    : 6.0 - 6.3
 Web Server        : Apache, Nginx
 Init system       : sysvinit
 Database          : MySQL, PostgreSQL
-<h2>Contributors      : @nielsbasjes, @axilleas, @mairin, @ponsjuh, @yorn, @psftw, @etcet</h2>
+<h5>Contributors      : @nielsbasjes, @axilleas, @mairin, @ponsjuh, @yorn, @psftw, @etcet</h5>
 Additional Notes  : In order to get a proper Ruby setup we build it from source
 </pre>
 ## Overview
