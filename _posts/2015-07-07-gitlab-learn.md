@@ -5,9 +5,8 @@ date:   2015-07-07 12:55:11
 category: "project management"
 ---
 <p>操作系统环境：</p>
-<pre>CentOS 5.5 x84_64位
-Zabbix版本2.2.3
-Web服务器：LNMP
+<pre>CentOS 6.5 x84_64 位 minimal
+
 </pre>
 <p>
 环境部署，参考其他靠谱文档，建议官方文档，今天我们聊聊zabbix邮件告警的事。
