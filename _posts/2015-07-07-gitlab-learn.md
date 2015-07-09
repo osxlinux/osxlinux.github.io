@@ -4,16 +4,14 @@ title:  gitlab-learn
 date:   2015-07-07 12:55:11
 category: "project management"
 ---
-```
-Distribution      : CentOS 6.5
+<pre>Distribution      : CentOS 6.5
 GitLab version    : 6.0 - 6.3
 Web Server        : Apache, Nginx
 Init system       : sysvinit
 Database          : MySQL, PostgreSQL
 Contributors      : @nielsbasjes, @axilleas, @mairin, @ponsjuh, @yorn, @psftw, @etcet
 Additional Notes  : In order to get a proper Ruby setup we build it from source
-```
-
+</pre>
 ## Overview
 
 Please read `doc/install/requirements.md` for hardware and platform requirements.
