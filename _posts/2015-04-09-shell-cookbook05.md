@@ -16,3 +16,5 @@ netstat -n |awk '/^tcp/ {print $NF}'|sort|uniq -c|sort -rn
 netstat -ant | awk '{print $NF}' | grep -v '[a-z]' | sort | uniq -c
 </code></pre>
 <p> awk 中的 $NF 相当于 $(NF) ($NF 和NF 区别)</p>
+<pre><code>cat passwd | awk -F':' '{print $(NF)}'  // 等价于 cat passwd | awk -F':' '{print $7}'
+</code></pre>
