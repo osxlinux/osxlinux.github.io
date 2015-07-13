@@ -6,7 +6,7 @@ category: "linux_天使团"
 ---
 <h2>常用shell</h2>
 
-###  查看TCP连接状态
+<h2>查看TCP连接状态</h2>
 <pre><code>
 netstat -nat |awk '{print $6}'|sort|uniq -c|sort -rn
 netstat -n | awk '/^tcp/ {++S[$NF]};END {for(a in S) print a, S[a]}'
