@@ -73,5 +73,12 @@ class login_get(object):
 
 login = login_get()
 def main():
+    userid = login.user_login()
+    return  userid
+def ReData(data):
+    re_data = login.get_data(data)
+    return re_data
+if __name__ == "__main__":
+    main()
 </code></pre>
 
