@@ -82,7 +82,7 @@ if __name__ == "__main__":
     main()
 </code></pre>
 <h2> 如何调用</h2>
-<code><pre>
+<pre><code>
 #!/usr/bin/python
 #coding:utf8
 
