@@ -1,8 +1,0 @@
----
-layout: post
-title:  python_base_01
-date:   2015-07-13 15:40:05
-category: "python_learn"
----
-<p>python 基础学习之: split</p>
-
