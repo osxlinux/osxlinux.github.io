@@ -12,6 +12,7 @@ Database          : MySQL, PostgreSQL
 <h5>Contributors      : @nielsbasjes, @axilleas, @mairin, @ponsjuh, @yorn, @psftw, @etcet</h5>
 Additional Notes  : In order to get a proper Ruby setup we build it from source
 </pre>
+
 ## Overview
 
 Please read `doc/install/requirements.md` for hardware and platform requirements.
