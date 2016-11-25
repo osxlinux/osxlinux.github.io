@@ -48,8 +48,8 @@ cp: overwrite `/bin/mail'? y
 [root@localhost ~]# vi /etc/nail.rc
 set from=test001@sina.com              #你的用户名
 set smtp=smtp://smtp.sina.cn:25
-set smtp-auth-user= test001@sina.com                   #你的用户名
-set smtp-auth-password= test001         #你的密码
+set smtp-auth-user= test001@sina.com   #你的用户名
+set smtp-auth-password= test001        #你的密码
 </code></pre>
 <h4>5)       测试发送一份邮件</h4>
 ![zabbix](otherimage/1.png)
