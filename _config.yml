@@ -85,9 +85,6 @@ customLinks:
   - item:
     - text: osxlinux
       url: http://osxlinux.cnblogs.com
-    - text: 随老大
-      url: http://www.suilaoda.com/
-    message: Friends
   - item:
     - text: Font Awesome
       url: http://fortawesome.github.io/Font-Awesome/
