@@ -2,7 +2,7 @@
 layout: post
 title:  network_arp_01 16:50
 date:   2017-06-16
-category: "python"
+category: "network"
 ---
 
 <h6>ARP分组格式</h6>
