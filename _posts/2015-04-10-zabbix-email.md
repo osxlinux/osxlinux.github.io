@@ -27,9 +27,12 @@ Web服务器：LNMP
 <h4>2)安装mailx：</h4>
 <pre><code>
 [root@localhost workplace]# ls
-mailx-12.4  mailx-12.4.tar.bz2  zabbix-2.2.3  zabbix-2.2.3.tar.gz
+mailx-12.4  mailx-12.4.tar.bz2  zabbix-2.2.3  zabbix-2.2.3.tar.gz mailx-12.4-openssl_1.0.0_build_fix-1.patch
+[root@localhost workplace]# tar -jxf mailx-12.4.tar.bz2 
+#注意 打patch
 [root@localhost workplace]#
 [root@localhost workplace]# cd mailx-12.4
+[root@localhost workplace]# patch  -Np1 -i mailx-12.4-openssl_1.0.0_build_fix-1.patch
 [root@localhost mailx-12.4]# make &&  make install UCBINSTALL=/usr/bin/install
 </code></pre>
 
